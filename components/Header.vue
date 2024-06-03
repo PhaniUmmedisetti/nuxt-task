@@ -121,4 +121,15 @@ body::after {
   font-size: 12px;
   color: #666;
 }
+
+@media (max-width: 1024px) {
+  .right-options {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .right-options {
+    display: none;
+  }
+}
 </style>

@@ -1,14 +1,10 @@
  <template>
-    <
       <div class="body-content">
         <p class="welcome-text">Welcome PAWAN,</p>
         <p class="select-text">Select any of the nConnect modules to view in detail.</p>
         <div class="cards-container">
-          <CardComponent title="Masters" />
-          <CardComponent title="Module 1" />
-          <CardComponent title="Module 2" />
-          <CardComponent title="Module 3" />
-          <CardComponent title="Module 4" />
+          <CardComponent v-for="(title, index) in cardTitles" :key="index" :title="title" />
+
         </div>
       </div>
 
@@ -16,6 +12,8 @@
   
   <script setup lang="ts">
   import CardComponent from '../components/card.vue';
+
+  const cardTitles = ref(['Masters', 'Module 1', 'Module 2', 'Module 3', 'Module 4']);
   </script>
   
   <style lang="scss">
@@ -41,7 +39,7 @@
   
   .cards-container {
     display: flex;
-    gap: 20px;
+    gap: 60px;
     flex-wrap: wrap; 
   }
   </style>
