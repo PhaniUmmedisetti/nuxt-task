@@ -18,6 +18,8 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/responsiveMixins.scss';
+
 .module-card {
   display: flex;
   gap: 12px;
@@ -28,18 +30,18 @@ const props = defineProps({
   background-color: #fff;
   border-radius: 32px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.4s ease, transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+  transition: box-shadow 0.4s ease, transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   height: 210px;
   width: 280px;
   cursor: pointer;
 
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: scale(1.01); 
+    transform: scale(1.01);
 
     .view-btn {
-      background-color: rgba(41, 128, 185, 0.9); /* Darker blue with 90% opacity */
-      color: rgba(255, 255, 255, 0.9); /* White with 90% opacity */
+      background-color: rgba(41, 128, 185, 0.9);
+      color: rgba(255, 255, 255, 0.9);
     }
   }
 
@@ -70,10 +72,8 @@ const props = defineProps({
     background-color: var(--button-color);
     transition: background-color 0.3s, color 0.3s;
   }
-}
 
-@media (max-width: 1024px) { 
-  .module-card {
+  @include desktop {
     height: 180px;
     width: 240px;
 
@@ -86,10 +86,8 @@ const props = defineProps({
       width: 170px;
     }
   }
-}
 
-@media (max-width: 768px) { 
-  .module-card {
+  @include tablet {
     height: 150px;
     width: 200px;
 
@@ -104,3 +102,4 @@ const props = defineProps({
   }
 }
 </style>
+

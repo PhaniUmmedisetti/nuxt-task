@@ -47,6 +47,8 @@ const options = [
 </script>
 
 <style lang="scss">
+@import '@/assets/responsiveMixins.scss';
+
 * {
   padding: 0;
   margin: 0;
@@ -60,13 +62,14 @@ const options = [
   position: relative;
   z-index: 1;
 }
+
 body::after {
   content: '';
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
-  height: 20px; 
+  height: 20px;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.3);
   z-index: -1;
 }
@@ -80,6 +83,14 @@ body::after {
   display: flex;
   align-items: center;
   gap: 40px;
+
+  @include desktop {
+    display: none;
+  }
+
+  @include tablet {
+    display: none;
+  }
 }
 
 .user-info {
@@ -120,16 +131,5 @@ body::after {
 .user-id {
   font-size: 12px;
   color: #666;
-}
-
-@media (max-width: 1024px) {
-  .right-options {
-    display: none;
-  }
-}
-@media (max-width: 768px) {
-  .right-options {
-    display: none;
-  }
 }
 </style>

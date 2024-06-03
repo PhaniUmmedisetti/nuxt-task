@@ -10,10 +10,11 @@
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
+@import '@/assets/responsiveMixins.scss';
+
 .footer {
   display: flex;
   justify-content: space-between;
@@ -21,7 +22,7 @@
   padding: 15px 20px;
   background-color: #e2e3ee;
 
-  @media (max-width: 1024px) { 
+  @include desktop {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
@@ -29,6 +30,7 @@
     .left-section {
       justify-content: center;
       width: 100%;
+
       p {
         font-size: 12px;
       }
@@ -37,13 +39,14 @@
     .right-section {
       text-align: center;
       width: 100%;
+
       .copyright {
         font-size: 12px;
       }
     }
   }
 
-  @media (max-width: 768px) { 
+  @include tablet {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
@@ -51,6 +54,7 @@
     .left-section {
       justify-content: center;
       width: 100%;
+
       p {
         font-size: 11px;
       }
@@ -59,6 +63,7 @@
     .right-section {
       text-align: center;
       width: 100%;
+
       .copyright {
         font-size: 11px;
       }
@@ -70,6 +75,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+
   p {
     font-size: 13px;
     color: #909399;
