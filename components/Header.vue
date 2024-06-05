@@ -47,8 +47,7 @@ const options = [
 </script>
 
 <style lang="scss">
-@import '@/assets/responsiveMixins.scss';
-
+@import '@/assets/scss/breakpoints.scss';
 * {
   padding: 0;
   margin: 0;

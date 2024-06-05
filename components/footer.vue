@@ -13,8 +13,7 @@
 <script setup lang="ts"></script>
 
 <style scoped lang="scss">
-@import '@/assets/responsiveMixins.scss';
-
+@import '@/assets/scss/breakpoints.scss';
 .footer {
   display: flex;
   justify-content: space-between;

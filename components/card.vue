@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 import { ElButton } from 'element-plus';
-import { defineProps } from 'vue';
 
 const props = defineProps({
   title: String
@@ -18,7 +17,7 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/responsiveMixins.scss';
+@import '@/assets/scss/breakpoints.scss';
 
 .module-card {
   display: flex;
