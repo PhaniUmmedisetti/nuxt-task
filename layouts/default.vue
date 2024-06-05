@@ -15,7 +15,6 @@
    min-height: 100vh;
    display: flex;
    flex-direction: column;
-   position: relative;
 }
 
 .layout__inner {

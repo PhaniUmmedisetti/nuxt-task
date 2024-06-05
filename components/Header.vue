@@ -20,7 +20,17 @@
           <div class="user-details">
             <div class="user-name">
               <span>PAWAN V</span>
-              <el-icon size="20" class="custom-icon" color="black"><More /></el-icon>
+              <el-dropdown>
+                <span class="el-dropdown-link">
+                  <el-icon size="20" class="custom-icon" color="black"><More /></el-icon>
+                </span>
+                <template #dropdown>
+                  <el-dropdown-menu>
+                    <el-dropdown-item @click="goToMyAccount">My Account</el-dropdown-item>
+                    <el-dropdown-item @click="logout">Logout</el-dropdown-item>
+                  </el-dropdown-menu>
+                </template>
+              </el-dropdown>
             </div>
             <div class="user-id">Employee ID: 597800274</div>
           </div>
@@ -32,7 +42,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { ElSelect, ElIcon, ElOption } from 'element-plus';
+import { useRouter } from 'vue-router';
+import { ElSelect, ElIcon, ElOption, ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus';
 import { Message, HomeFilled, More } from '@element-plus/icons-vue';
 
 const value1 = ref([]);
@@ -44,6 +55,16 @@ const options = [
   { value: 'Option4', label: 'Option4' },
   { value: 'Option5', label: 'Option5' }
 ];
+
+const router = useRouter();
+
+const goToMyAccount = () => {
+  console.log('Clicked on my account');
+};
+
+const logout = () => {
+  router.push('/login');
+};
 </script>
 
 <style lang="scss">
@@ -125,10 +146,11 @@ body::after {
   align-items: center;
   gap: 5px;
   font-weight: bold;
+  font-size: 14px;
 }
 
 .user-id {
-  font-size: 12px;
+  font-size: 14px;
   color: #666;
 }
 </style>
