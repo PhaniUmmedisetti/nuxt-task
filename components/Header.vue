@@ -45,6 +45,9 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElSelect, ElIcon, ElOption, ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus';
 import { Message, HomeFilled, More } from '@element-plus/icons-vue';
+import useAuth from '@/services/auth';
+
+const { logout } = useAuth();
 
 const value1 = ref([]);
 
@@ -62,9 +65,6 @@ const goToMyAccount = () => {
   console.log('Clicked on my account');
 };
 
-const logout = () => {
-  router.push('/login');
-};
 </script>
 
 <style lang="scss">

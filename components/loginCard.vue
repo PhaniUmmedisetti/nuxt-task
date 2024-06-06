@@ -5,7 +5,7 @@
         <img src="~assets/images/nconnect-logo-orange.svg" alt="nConnect Logo" />
       </div>
       <h2 class="title">Sign In</h2>
-      <form class="form" @submit.prevent="submitForm">
+      <form class="form" @submit.prevent="handleLogin">
         <div v-if="loginMethod === 'password'">
           <div class="form-group" required>
             <label for="username"> Username</label>
@@ -36,7 +36,7 @@
                 placeholder="Enter Employee Number"
               ></el-input>
             </div>
-            <el-button type="primary" class="submit-btn" @click="validateEmployeeNumber">Next</el-button>
+            <el-button type="primary" class="submit-btn" @click="validateEmployeeNumber(employeeNumber)">Next</el-button>
           </div>
           <div v-else>
             <div class="form-group" required>
@@ -47,7 +47,7 @@
                 placeholder="Enter OTP"
               ></el-input>
             </div>
-            <el-button type="primary" class="submit-btn" @click="validateOTP">Submit OTP</el-button>
+            <el-button type="primary" class="submit-btn" @click="validateOTP(otp)">Submit OTP</el-button>
           </div>
         </div>
         <div class="divider">
@@ -68,64 +68,40 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router';
-import { ElButton, ElInput, ElIcon } from 'element-plus'
+import { ref } from 'vue';
+import { ElButton, ElInput, ElIcon } from 'element-plus';
 import { Key, Comment } from '@element-plus/icons-vue';
+import useAuth from '@/services/auth';
 
-const router = useRouter()
-const username = ref('')
-const password = ref('')
-const otp = ref('')
-const correctUsername = "bunnyman"
-const correctPassword = "nconnect@123"
-const correctOTP = "9999"
-const loginMethod = ref('password')
-const showOTPInput = ref(false)
-const employeeNumber = ref('')
+const {
+  loginMethod,
+  showOTPInput,
+  employeeNumber,
+  otp,
+  login,
+  validateEmployeeNumber,
+  validateOTP,
+} = useAuth();
 
-const submitForm = () => {
-  if (loginMethod.value === 'password') {
-    if (username.value === correctUsername && password.value === correctPassword) {
-      redirectToIndex()
-    } else {
-      alert('Invalid username or password')
-    }
-  }
-}
+const username = ref('');
+const password = ref('');
 
-const validateEmployeeNumber = () => {
-  if (employeeNumber.value === correctUsername) {
-    username.value = employeeNumber.value; 
-    showOTPInput.value = true;
-  } else {
-    alert('Invalid Employee Number')
-  }
-}
-
-const validateOTP = () => {
-  if (otp.value === correctOTP) {
-    redirectToIndex()
-  } else {
-    alert('Incorrect OTP. Please try again.')
-  }
-}
-
-const redirectToIndex = () => {
-  router.push('/')
-}
+const handleLogin = () => {
+  login(username.value, password.value);
+};
 
 const toggleLoginMethod = () => {
   loginMethod.value = loginMethod.value === 'password' ? 'otp' : 'password';
   if (loginMethod.value === 'otp') {
-    showOTPInput.value = false; 
+    showOTPInput.value = false;
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 80vh;
@@ -235,4 +211,4 @@ const toggleLoginMethod = () => {
 .login-btn-icon{
   margin-right: 0.5rem;
 }
-</style>
+</style> 
