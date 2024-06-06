@@ -53,22 +53,30 @@
         <div class="divider">
           <span>or</span>
         </div>
-        <el-button class="password-btn" @click="toggleLoginMethod">
+        <el-button class="login-change-btn" @click="toggleLoginMethod">
+          <el-icon class="login-btn-icon" v-if="loginMethod === 'password'">
+            <Key />
+          </el-icon>
+          <el-icon class="login-btn-icon" v-else>
+            <Comment />
+          </el-icon>
           {{ loginMethod === 'password' ? 'Login with OTP' : 'Login with Password' }}
         </el-button>
       </form>
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router';
-import { ElButton, ElInput } from 'element-plus'
+import { ElButton, ElInput, ElIcon } from 'element-plus'
+import { Key, Comment } from '@element-plus/icons-vue';
 
 const router = useRouter()
-const username = ref<string>('')
-const password = ref<string>('')
-const otp = ref<string>('')
+const username = ref('')
+const password = ref('')
+const otp = ref('')
 const correctUsername = "bunnyman"
 const correctPassword = "nconnect@123"
 const correctOTP = "9999"
@@ -83,17 +91,12 @@ const submitForm = () => {
     } else {
       alert('Invalid username or password')
     }
-  } else {
-    if (showOTPInput.value) {
-      validateOTP();
-    } else {
-      alert('Please enter employee number first')
-    }
   }
 }
 
 const validateEmployeeNumber = () => {
   if (employeeNumber.value === correctUsername) {
+    username.value = employeeNumber.value; 
     showOTPInput.value = true;
   } else {
     alert('Invalid Employee Number')
@@ -114,8 +117,12 @@ const redirectToIndex = () => {
 
 const toggleLoginMethod = () => {
   loginMethod.value = loginMethod.value === 'password' ? 'otp' : 'password';
+  if (loginMethod.value === 'otp') {
+    showOTPInput.value = false; 
+  }
 }
 </script>
+
 <style lang="scss" scoped>
 .container {
   display: flex;
@@ -212,13 +219,20 @@ const toggleLoginMethod = () => {
   height: 2.5rem;
   width: 50vh;
   border-radius: 2rem;
+  background-color: #535dbb;
+  font-size: 14px;
+  border-color: #535dbb;
 }
 
-.password-btn {
+.login-change-btn {
   height: 2.5rem;
   width: 50vh;
   margin-top: 0.5rem;
+  border-radius: 2rem;
+  color: #535dbb;
+  border-color:#535dbb; 
+}
+.login-btn-icon{
+  margin-right: 0.5rem;
 }
 </style>
-
-
